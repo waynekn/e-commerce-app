@@ -15,7 +15,14 @@
     height: 240px;
     display: flex;
     flex-direction: column;
-    overflow: hidden; /* Hide the scroll bars */
+    overflow-y: scroll; /* Allow vertical scrolling */
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+    scrollbar-width: none; /* Firefox */
+
+    /* Hide the scrollbar for other browsers */
+    &::-webkit-scrollbar {
+      display: none; /* Safari and Chrome */
+    }
   }
 
   button {
