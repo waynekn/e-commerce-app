@@ -1,18 +1,14 @@
 import { AnyAction } from "redux-saga";
-import { UserData } from "../../utils/firebase/firebase.utils";
+
 import {
-  signInSuccess,
   signInFailed,
   signUpFailed,
-  signOutSuccess,
   signOutFailed,
+  signOutSuccess,
+  signInSuccess,
 } from "./user.action";
 
-const INITIAL_STATE = {
-  currentUser: null,
-  isLoading: false,
-  error: null,
-};
+import { UserData } from "../../utils/firebase/firebase.utils";
 
 export type UserState = {
   readonly currentUser: UserData | null;
@@ -20,10 +16,13 @@ export type UserState = {
   readonly error: Error | null;
 };
 
-export const userReducer = (
-  state = INITIAL_STATE,
-  action: AnyAction
-): UserState => {
+const INITIAL_STATE: UserState = {
+  currentUser: null,
+  isLoading: false,
+  error: null,
+};
+
+export const userReducer = (state = INITIAL_STATE, action: AnyAction) => {
   if (signInSuccess.match(action)) {
     return { ...state, currentUser: action.payload };
   }
